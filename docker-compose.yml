@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  database:
+    container_name: descomplica-database
+    image: postgres
+    environment:
+      - POSTGRES_USER=docker
+      - POSTGRES_PASSWORD=docker
+      - POSTGRES_DB=descomplica
+    volumes:
+      - ./.data/postgresql:/var/lib/postgresql/data
+    ports:
+      - '5432:5432'
