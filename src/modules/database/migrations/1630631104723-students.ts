@@ -30,6 +30,18 @@ export class students1630631104723 implements MigrationInterface {
             length: '11',
             isUnique: true,
           },
+          {
+            name: 'created_at',
+            type: 'timestamptz',
+            isNullable: false,
+            default: 'now()',
+          },
+          {
+            name: 'updated_at',
+            type: 'timestamptz',
+            isNullable: false,
+            default: 'now()',
+          },
         ],
       }),
     );
