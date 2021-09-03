@@ -1,3 +1,4 @@
+<div align="center">
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
 </p>
@@ -14,11 +15,6 @@
   <a href="#rocket-technologies">:rocket:&nbsp;&nbsp;Technologies</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#information_source-how-to-use">:information_source:&nbsp;&nbsp;How To Use</a>
 </p>
-
-<!-- Mockup -->
-<div  align="center" style="padding: 50px;">
-  <img alt="Mockup" src="./.github/mockup.png" width="auto" heigth="auto"/>
-</div>
 
 </div>
 
