@@ -9,7 +9,7 @@ import { Field, ObjectType } from '@nestjs/graphql';
 
 @ObjectType()
 @Entity({ name: 'students' })
-export default class Student {
+export class Student {
   @Field()
   @PrimaryGeneratedColumn()
   id: number;
