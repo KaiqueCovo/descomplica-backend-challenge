@@ -1,6 +1,9 @@
 # Data
 .data
 
+# Enviroments
+.env
+
 # compiled output
 /dist
 /node_modules

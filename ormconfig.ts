@@ -8,8 +8,6 @@ import {
   DATABASE_DB,
 } from './src/settings';
 
-console.log(DATABASE_HOST, DATABASE_PORT, DATABASE_USER, DATABASE_PASSWORD);
-
 const settings: TypeOrmModuleOptions = {
   type: 'postgres',
   host: DATABASE_HOST,
