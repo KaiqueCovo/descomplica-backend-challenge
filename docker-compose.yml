@@ -1,14 +1,34 @@
 version: '3'
 
 services:
+  api:
+    container_name: descomplica-backend
+    build:
+      context: .
+      target: ${NODE_ENV}
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - ${APP_PORT}:${APP_PORT}
+    env_file:
+      - .env
+    networks:
+      - descomplica
+    depends_on:
+      - database
   database:
     container_name: descomplica-database
     image: postgres
     environment:
-      - POSTGRES_USER=docker
-      - POSTGRES_PASSWORD=docker
-      - POSTGRES_DB=descomplica
+      POSTGRES_USER: ${DATABASE_USER}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+      POSTGRES_DB: ${DATABASE_DB}
     volumes:
       - ./.data/postgresql:/var/lib/postgresql/data
     ports:
-      - '5432:5432'
+      - ${DATABASE_PORT}:5432
+    networks:
+      - descomplica
+networks:
+  descomplica:
