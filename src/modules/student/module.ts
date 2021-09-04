@@ -3,7 +3,7 @@ import { StudentService } from './services/student';
 import { DatabaseModule } from 'src/modules/database';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Student } from 'src/modules/database/models/student';
-import { StudentResolver } from './resolvers/student';
+import { StudentResolver } from './resolvers';
 
 @Module({
   imports: [DatabaseModule, TypeOrmModule.forFeature([Student])],
