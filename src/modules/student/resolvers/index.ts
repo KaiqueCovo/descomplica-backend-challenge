@@ -1,7 +1,10 @@
-import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { Args, Mutation, Query, Resolver, Subscription } from '@nestjs/graphql';
+import { PubSub } from 'graphql-subscriptions';
 import { Student } from 'src/modules/database/models/student';
 import { StudentService } from 'src/modules/student/services/student';
 import { StudentInput } from './input';
+
+export const pubSub = new PubSub();
 
 @Resolver(() => Student)
 export class StudentResolver {
@@ -21,6 +24,15 @@ export class StudentResolver {
   public async createStudent(
     @Args('data') input: StudentInput,
   ): Promise<Student> {
-    return this.studentService.create(input);
+    const student = await this.studentService.create(input);
+
+    pubSub.publish('studentAdded', { studentAdded: student });
+
+    return student;
+  }
+
+  @Subscription(() => Student)
+  studentAdded() {
+    return pubSub.asyncIterator('studentAdded');
   }
 }

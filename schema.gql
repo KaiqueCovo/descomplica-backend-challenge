@@ -30,3 +30,7 @@ input StudentInput {
   email: String!
   cpf: String!
 }
+
+type Subscription {
+  studentAdded: Student!
+}

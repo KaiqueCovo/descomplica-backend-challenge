@@ -8,6 +8,7 @@ import { StudentModule } from './student/module';
     RouterModule.register([{ path: '/student', module: StudentModule }]),
     GraphQLModule.forRoot({
       autoSchemaFile: 'schema.gql',
+      installSubscriptionHandlers: true,
     }),
     StudentModule,
   ],

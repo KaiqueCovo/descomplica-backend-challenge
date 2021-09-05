@@ -34,6 +34,7 @@ This project was developed at challenge [Descomplica](https://descomplica.com.br
 - [TypeScript](https://www.typescriptlang.org/)
 - [TypeORM](https://typeorm.io)
 - [PostgreSQL](https://www.postgresql.org/)
+- [Redis](https://redis.io/)
 - [GraphQL](https://graphql.org/)
 - [Apollo Server](https://www.apollographql.com/docs/apollo-server/)
 - [Docker](https://www.docker.com/)
@@ -59,11 +60,17 @@ $ yarn
 # or
 $ npm run install
 
+# Run tests
+$ yarn test
+# or
+$ npm run test
+
 # Run the container
 $ docker compose up -d
 
 # Run migrations
 $ yarn typeorm migration:run
+
 
 # Run the app
 $ yarn start:dev
