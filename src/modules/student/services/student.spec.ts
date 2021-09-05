@@ -3,10 +3,16 @@ import { Test, TestingModule } from '@nestjs/testing';
 
 import { Student } from '../../database/models/student';
 import { StudentService } from './student';
+import { RedisCacheService } from 'src/modules/redis/services/redis';
 import { IStudent } from 'src/modules/database/interfaces/student';
 
 describe('StudentService', () => {
   let service: StudentService;
+
+  const mockCache = {
+    get: jest.fn(),
+    set: jest.fn(),
+  };
 
   const mockRepository = {
     find: jest.fn(),
@@ -30,6 +36,10 @@ describe('StudentService', () => {
           provide: getRepositoryToken(Student),
           useValue: mockRepository,
         },
+        {
+          provide: RedisCacheService,
+          useValue: mockCache,
+        },
       ],
     }).compile();
 
@@ -47,6 +57,15 @@ describe('StudentService', () => {
     expect(result).not.toBeFalsy();
     expect(result).toHaveLength(2);
     expect(mockRepository.find).toHaveBeenCalledTimes(1);
+  });
+
+  it('Should be list all students from cache', async () => {
+    mockCache.get.mockReturnValue([student, student]);
+    const result = await service.list();
+
+    expect(result).not.toBeFalsy();
+    expect(result).toHaveLength(2);
+    expect(mockCache.get).toHaveBeenCalledTimes(2);
   });
 
   it('Should be find student by id', async () => {

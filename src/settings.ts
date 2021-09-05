@@ -15,3 +15,7 @@ export const DATABASE_DB = process.env.DATABASE_DB;
 export const DATABASE_USER = process.env.DATABASE_USER;
 export const DATABASE_PASSWORD = process.env.DATABASE_PASSWORD;
 export const DATABASE_PORT = Number(process.env.DATABASE_PORT);
+
+export const REDIS_HOST = process.env.REDIS_HOST;
+export const REDIS_PORT = Number(process.env.REDIS_PORT);
+export const REDIS_TTL = Number(process.env.REDIS_TTL);
