@@ -2,6 +2,8 @@ import { Args, Mutation, Query, Resolver, Subscription } from '@nestjs/graphql';
 import { PubSub } from 'graphql-subscriptions';
 import { Student } from 'src/modules/database/models/student';
 import { StudentService } from 'src/modules/student/services/student';
+
+import { StudentFilter } from './args';
 import { StudentInput } from './input';
 
 export const pubSub = new PubSub();
@@ -11,8 +13,8 @@ export class StudentResolver {
   constructor(private readonly studentService: StudentService) {}
 
   @Query(() => [Student])
-  public async getStudents(): Promise<Student[]> {
-    return this.studentService.list();
+  public async getStudents(@Args() filter: StudentFilter): Promise<Student[]> {
+    return this.studentService.list(filter);
   }
 
   @Query(() => Student, { nullable: true })

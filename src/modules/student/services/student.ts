@@ -4,6 +4,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Student } from 'src/modules/database/models/student';
 import { IStudent } from 'src/modules/database/interfaces/student';
 import { RedisCacheService } from 'src/modules/redis/services/redis';
+import { IStudentFilter } from '../interfaces/studentFilter';
 
 @Injectable()
 export class StudentService {
@@ -13,7 +14,12 @@ export class StudentService {
     private readonly cacheService: RedisCacheService,
   ) {}
 
-  public async list(): Promise<Student[]> {
+  public async list(filter: IStudentFilter): Promise<Student[]> {
+    if (filter && Object.keys(filter).length > 0) {
+      const studentFilter = await this.studentRepository.find(filter);
+      return studentFilter;
+    }
+
     const studentsCache = (await this.cacheService.get(
       'students',
     )) as Student[];
@@ -21,7 +27,6 @@ export class StudentService {
     if (studentsCache) return studentsCache;
 
     const students = await this.studentRepository.find();
-
     this.cacheService.set('students', students);
 
     return students;

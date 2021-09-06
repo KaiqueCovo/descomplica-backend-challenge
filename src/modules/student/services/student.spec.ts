@@ -52,7 +52,7 @@ describe('StudentService', () => {
 
   it('Should be list all students', async () => {
     mockRepository.find.mockReturnValue([student, student]);
-    const result = await service.list();
+    const result = await service.list(null);
 
     expect(result).not.toBeFalsy();
     expect(result).toHaveLength(2);
@@ -61,7 +61,7 @@ describe('StudentService', () => {
 
   it('Should be list all students from cache', async () => {
     mockCache.get.mockReturnValue([student, student]);
-    const result = await service.list();
+    const result = await service.list(null);
 
     expect(result).not.toBeFalsy();
     expect(result).toHaveLength(2);
@@ -75,6 +75,24 @@ describe('StudentService', () => {
     expect(result).not.toBeFalsy();
     expect(result).toMatchObject({ id: student.id });
     expect(mockRepository.findOne).toHaveBeenCalledTimes(1);
+  });
+
+  it('Should be filter student', async () => {
+    mockRepository.find.mockReturnValue([student]);
+
+    const [result] = await service.list({
+      name: 'John Doe',
+      email: 'johndoe@example.com',
+      cpf: '48740181812',
+    });
+
+    expect(result).not.toBeFalsy();
+    expect(result).toMatchObject({
+      name: student.name,
+      email: student.email,
+      cpf: student.cpf,
+    });
+    expect(mockRepository.find).toHaveBeenCalledTimes(2);
   });
 
   it('Should be create student', async () => {
