@@ -45,7 +45,7 @@ This project was developed at challenge [Descomplica](https://descomplica.com.br
 
 ## :information_source: How To Use
 
-To clone and run this application, you'll need [Docker v1.13.0+](https://www.docker.com/) [Git](https://git-scm.com), [Node.js v10.16](https://nodejs.org/en) or higher + [Yarn v1.13](https://yarnpkg.com) your computer. Run from your command line:
+To clone and run this application, you'll need [Docker v1.13.0+](https://www.docker.com/), [Git](https://git-scm.com), [Node.js v10.16](https://nodejs.org/en) or higher + [Yarn v1.13](https://yarnpkg.com) your computer. Run from your command line:
 
 ```bash
 # Clone this repository
@@ -62,11 +62,6 @@ $ yarn
 # or
 $ npm run install
 
-# Run migrations
-$ yarn typeorm migration:run
-# or
-$ npm run typeorm migration:run
-
 # Run tests
 $ yarn test
 # or
@@ -75,7 +70,13 @@ $ npm run test
 # Run the containers
 $ docker compose up
 
-# Access application from browser descomplica.backend.localhost
+
+# Run migrations
+$ yarn typeorm migration:run
+# or
+$ npm run typeorm migration:run
+
+# Access application from browser descomplica.backend.localhost/graphql
 ```
 
 ---
