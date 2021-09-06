@@ -22,7 +22,7 @@
 
 ## :bookmark_tabs: About the project
 
-API Graphql for add students. This is challenge from Descomplica
+API Graphql for add, list and filter students. This is challenge from Descomplica
 
 <!-- Technologies -->
 
@@ -37,13 +37,15 @@ This project was developed at challenge [Descomplica](https://descomplica.com.br
 - [Redis](https://redis.io/)
 - [GraphQL](https://graphql.org/)
 - [Apollo Server](https://www.apollographql.com/docs/apollo-server/)
+- [NGINX](https://www.nginx.com/)
 - [Docker](https://www.docker.com/)
+- [jest](https://jestjs.io/pt-BR/)
 
 <!-- How to use -->
 
 ## :information_source: How To Use
 
-To clone and run this application, you'll need [Git](https://git-scm.com), [Node.js v10.16](https://nodejs.org/en) or higher + [Yarn v1.13](https://yarnpkg.com) or higher installed on your computer. Run from your command line:
+To clone and run this application, you'll need [Docker v1.13.0+](https://www.docker.com/) [Git](https://git-scm.com), [Node.js v10.16](https://nodejs.org/en) or higher + [Yarn v1.13](https://yarnpkg.com) your computer. Run from your command line:
 
 ```bash
 # Clone this repository
@@ -60,22 +62,20 @@ $ yarn
 # or
 $ npm run install
 
+# Run migrations
+$ yarn typeorm migration:run
+# or
+$ npm run typeorm migration:run
+
 # Run tests
 $ yarn test
 # or
 $ npm run test
 
-# Run the container
-$ docker compose up -d
+# Run the containers
+$ docker compose up
 
-# Run migrations
-$ yarn typeorm migration:run
-
-
-# Run the app
-$ yarn start:dev
-# or
-$ npm run start:dev
+# Access application from browser descomplica.backend.localhost
 ```
 
 ---
