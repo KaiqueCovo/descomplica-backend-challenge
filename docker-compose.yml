@@ -1,6 +1,15 @@
 version: '3'
 
 services:
+  nginx:
+    container_name: descomplica-backend-nginx
+    image: nginx
+    ports:
+      - 80:80
+    volumes:
+      - ./config/nginx/site.conf:/etc/nginx/conf.d/site.conf
+    networks:
+      - descomplica
   api:
     container_name: descomplica-backend
     build:
